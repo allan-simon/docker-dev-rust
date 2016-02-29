@@ -1,6 +1,0 @@
----
-go_version: 1.5.2
-go_archive_file: go{{ go_version }}.linux-amd64.tar.gz
-go_binary: "{{ home }}/opt/go/bin/go"
-go_root: "{{ home }}/opt/go"
-go_path: "{{ home }}/code/go"

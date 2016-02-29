@@ -21,11 +21,9 @@
        - tree
        - htop
        - man-db
+       - libssl-dev # used by python2 for SSL checking
+       - libffi-dev
 
   roles:
     - {role: zsh, sudo: false}
-    #- {role: twgit, sudo: false}
-    - {role: go, sudo: false}
     - {role: vim, sudo: false}
-#    - postgresql
-#    - {role: app, sudo: false}

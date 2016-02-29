@@ -24,32 +24,15 @@
       state=link
 #
 
-- name: Check out vim-go
-  git:
-    repo=https://github.com/fatih/vim-go.git
-    dest={{ home }}/src/vim-go
-    update=yes
 - name: Ensure ~/.vim/bundle exists
   file:
     dest={{ home }}/.vim/bundle
     state=directory
-- name: Symlink vim-go to .vim/bundle
-  file:
-    src={{ home }}/src/vim-go
-    dest={{ home }}/.vim/bundle/vim-go
-    state=link
-
-#
-- name: Check out tagbar
+- name: Check out syntastic
   git:
-    repo=https://github.com/majutsushi/tagbar
-    dest={{ home }}/.vim/bundle/tagbar
+    repo=https://github.com/scrooloose/syntastic.git
+    dest={{ home }}/.vim/bundle/syntastic
     update=yes
-
-- name: install exuberant-ctags from repo
-  sudo: yes
-  apt: name=exuberant-ctags state=installed
-
 
 #
 - name: Checkout abolish

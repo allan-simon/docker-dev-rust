@@ -1,67 +1,72 @@
 ---
+
 - name: copy config files in rc folder
-  copy: src=.vimrc dest={{ home }}/.vimrc
+  copy:
+    src=".vimrc"
+    dest="{{ home }}/.vimrc"
+    owner="{{ username }}"
+    group="{{ username }}"
+    mode=0640
 
-- name: Create ~/.vim folder
-  file: dest={{ home }}/.vim state=directory
-
-- name: Create ~/src folder
-  file: dest={{ home }}/src/vim-pathogen state=directory
+- name: Create dot-vim folders
+  file:
+    dest="{{ item }}"
+    state=directory
+    owner="{{ username }}"
+    group="{{ username }}"
+    mode=0750
+  with_items:
+    - "{{ home }}/.vim"
+    - "{{ home }}/.vim/autoload"
+    - "{{ home }}/.vim/bundle"
+    - "{{ home }}/src"
 
 - name: Check out pathogen
   git:
-      repo=https://github.com/tpope/vim-pathogen.git
-      dest={{ home }}/src/vim-pathogen
-      update=yes
-
-- name: Create ~/.vim/autoload folder
-  file: dest={{ home }}/.vim/autoload state=directory
+    repo="https://github.com/tpope/vim-pathogen.git"
+    dest="{{ home }}/src/vim-pathogen"
+    update=yes
 
 - name: Symlink pathogen into ~/.vim/autoload
   file:
-      src={{ home }}/src/vim-pathogen/autoload/pathogen.vim
-      dest={{ home }}/.vim/autoload/pathogen.vim
-      state=link
-#
+    src="{{ home }}/src/vim-pathogen/autoload/pathogen.vim"
+    dest="{{ home }}/.vim/autoload/pathogen.vim"
+    state=link
 
-- name: Ensure ~/.vim/bundle exists
-  file:
-    dest={{ home }}/.vim/bundle
-    state=directory
 - name: Check out syntastic
   git:
-    repo=https://github.com/scrooloose/syntastic.git
-    dest={{ home }}/.vim/bundle/syntastic
+    repo="https://github.com/scrooloose/syntastic.git"
+    dest="{{ home }}/.vim/bundle/syntastic"
     update=yes
 
-#
 - name: Checkout abolish
   git:
-    repo=https://github.com/tpope/vim-abolish.git
-    dest={{ home }}/.vim/bundle/vim-abolish
+    repo="https://github.com/tpope/vim-abolish.git"
+    dest="{{ home }}/.vim/bundle/vim-abolish"
     update=yes
 
-#
-
 - name: Install apt packages for YouCompleteMe vim completion engine
-  sudo: yes
   apt:
-    name={{ item }} state=latest
+    name="{{ item }}"
+    state=present
   with_items:
     - build-essential
     - cmake
     - python-dev
+
 - name: Check out YouCompleteMe
   git:
-    repo=https://github.com/Valloric/YouCompleteMe.git
-    dest={{ home }}/src/YouCompleteMe
+    repo="https://github.com/Valloric/YouCompleteMe.git"
+    dest="{{ home }}/src/YouCompleteMe"
     force=yes
+
 - name: Symlink YouCompleteMe to ~/vim/bundle
   file:
-    src={{ home }}/src/YouCompleteMe
-    dest={{ home }}/.vim/bundle/YouCompleteMe
+    src="{{ home }}/src/YouCompleteMe"
+    dest="{{ home }}/.vim/bundle/YouCompleteMe"
     state=link
+
 - name: Compile YouCompleteMe binaries
   command: ./install.sh --clang-completer
-    chdir={{ home }}/src/YouCompleteMe
-    creates={{ home }}/src/YouCompleteMe/third_party/ycmd/ycm_core.so
+    chdir="{{ home }}/src/YouCompleteMe"
+    creates="{{ home }}/src/YouCompleteMe/third_party/ycmd/ycm_core.so"

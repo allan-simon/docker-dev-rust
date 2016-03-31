@@ -1,14 +1,19 @@
 ---
-- hosts: all
-  sudo: true
+- hosts: localhost
+  become: true
+
   vars:
-      home: /home/vagrant
-      document_root: /vagrant
+    username: "vagrant"
+    home: "/home/{{ username }}"
+    document_root: "/{{ username }}"
+
   pre_tasks:
-    - name: check last APT update time
-      apt: update_cache=yes cache_valid_time=86400
     - name: Install stuff from Aptitude
-      apt: name={{ item }} state=installed
+      apt: 
+        name="{{ item }}"
+        state=present
+        update_cache=yes 
+        cache_valid_time=86400
       with_items:
        - git
        - tig
@@ -21,9 +26,7 @@
        - tree
        - htop
        - man-db
-       - libssl-dev # used by python2 for SSL checking
-       - libffi-dev
 
   roles:
-    - {role: zsh, sudo: false}
-    - {role: vim, sudo: false}
+    - zsh
+    - vim

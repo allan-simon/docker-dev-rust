@@ -7,7 +7,6 @@ ENV DEBIAN_FRONTEND noninteractive
 
 
 COPY change_user_uid.sh /
-COPY inventory_file  /etc/ansible/hosts
 
 # Note: we chain all the command in One RUN, so that docker create only one layer
 RUN \

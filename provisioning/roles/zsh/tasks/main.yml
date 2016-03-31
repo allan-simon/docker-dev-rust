@@ -1,11 +1,19 @@
 ---
+
 - name: install zsh from repo
-  sudo: yes
-  apt: name=zsh state=installed
+  apt: 
+    name=zsh
+    state=present
 
 - name: copy config files in rc folder
-  copy: src=.zshrc dest={{ home }}/.zshrc
+  copy: 
+    src=".zshrc"
+    dest="{{ home }}/.zshrc"
+    owner="{{ username }}"
+    group="{{ username }}"
+    mode=0640
 
 - name: change login shell to zsh
-  sudo: yes
-  user: name=vagrant shell=/usr/bin/zsh 
+  user:
+    name="{{ username }}" 
+    shell=/usr/bin/zsh 

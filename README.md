@@ -19,7 +19,7 @@
 ### Usage
 
 ```bash
-docker run -d -e HOST_USER_UID=$(id -u)  --name YOUR_PROJECT -p YOUR_LOCAL_PORT:22 go_vim_docker
+docker run -d -e HOST_USER_UID=$(id -u)  --name YOUR_PROJECT -p YOUR_LOCAL_PORT:22 js_vim_docker
 ```
 
 so then you can `ssh` in your machine with port `YOUR_LOCAL_PORT`

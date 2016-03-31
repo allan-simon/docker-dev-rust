@@ -1,2 +1,4 @@
 .vagrant
 keys
+.idea
+*.iml

@@ -10,7 +10,7 @@
     - nodejs-legacy
 
 - name: install latest version of npm, as the one in ubuntu 14.04 is too old
-  command: curl https://www.npmjs.com/install.sh | sh
+  shell: curl https://www.npmjs.com/install.sh | sh
 
 - name: install gulp
   command: npm install -g gulp

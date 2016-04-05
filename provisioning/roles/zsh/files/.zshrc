@@ -29,8 +29,6 @@ zle -N edit-command-line
 #bindkey '^T' tetris
 bindkey '^r' history-incremental-search-backward
 bindkey '^x' edit-command-line
-bindkey '^f' emacs-forward-word
-bindkey '^b' emacs-backward-word
 bindkey '^a' beginning-of-line
 bindkey '^e' end-of-line
 bindkey '^?' backward-delete-char

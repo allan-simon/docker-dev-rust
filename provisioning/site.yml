@@ -28,5 +28,6 @@
        - man-db
 
   roles:
+    - js
     - zsh
     - vim

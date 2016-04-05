@@ -1,0 +1,19 @@
+---
+
+- name: install nodejs and npm from repo
+  apt: 
+    name="{{ item }}"
+    state=present
+  with_items:
+    - npm
+    - nodejs
+    - nodejs-legacy
+
+- name: install latest version of npm, as the one in ubuntu 14.04 is too old
+  command: curl https://www.npmjs.com/install.sh | sh
+
+- name: install gulp
+  command: npm install -g gulp
+
+- name: install eslint_d
+  command: npm install -g eslint_d eslint-plugin-react

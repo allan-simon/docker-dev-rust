@@ -39,6 +39,19 @@
     dest="{{ home }}/.vim/bundle/syntastic"
     update=yes
 
+- name: Check out some javascript/jsx specific plugins
+  git:
+    repo="https://github.com/pangloss/vim-javascript.git"
+    dest="{{ home }}/.vim/bundle/vim-javascript"
+    update=yes
+
+- name: Check out some javascript/jsx specific plugins
+  git:
+    repo="https://github.com/mxw/vim-jsx.git"
+    dest="{{ home }}/.vim/bundle/vim-jsx"
+    update=yes
+
+
 - name: Checkout abolish
   git:
     repo="https://github.com/tpope/vim-abolish.git"
@@ -67,6 +80,6 @@
     state=link
 
 - name: Compile YouCompleteMe binaries
-  command: ./install.sh --clang-completer
+  command: ./install.py --tern-completer
     chdir="{{ home }}/src/YouCompleteMe"
     creates="{{ home }}/src/YouCompleteMe/third_party/ycmd/ycm_core.so"

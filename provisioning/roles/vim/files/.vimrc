@@ -19,9 +19,6 @@ autocmd BufRead *.html highlight BadWhitespace ctermbg=red guibg=red
 autocmd BufRead *.html match BadWhitespace /^\t\+/
 autocmd BufRead *.html match BadWhitespace /\s\+$/
 
-autocmd BufRead *.cpp set autoindent 
-autocmd BufRead *.h set autoindent 
-
 autocmd BufRead *.md syntax=markdown
 highlight NobreakSpace ctermbg=red guibg=red
 match NobreakSpace / /
@@ -36,9 +33,7 @@ set smarttab
 set expandtab
 set smartindent
 
-
 "the status bar is always displayed
-
 set laststatus=2 
 if has("statusline")
     set statusline=%<%f%h%m%r%=%l,%c\ %P  
@@ -63,17 +58,12 @@ set autochdir
 set showcmd
 
 
-"let g:ycm_key_list_select_completion = ['\<TAB>', '<Down>']
-
 let g:clang_library_path = "/usr/lib/"
-" syntastic
-"let g:syntastic_auto_loc_list=1
-""let g:syntastic_check_on_open=1
-"let g:syntastic_disabled_filetypes=['html']
-"let g:syntastic_enable_signs=1
 
 colorscheme torte
 
 let g:syntastic_aggregate_errors = 1
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exec = 'eslint_d'
 
 execute pathogen#infect()

@@ -1,4 +1,7 @@
-## Devbox for python projects using docker
+## Devbox for rust projects using docker
+
+[![Docker Automated buil](https://img.shields.io/docker/automated/allansimon/docker-dev-rust.svg)]()
+[![Docker Build Statu](https://img.shields.io/docker/build/allansimon/docker-dev-rust.svg)]()
 
 ### What you will get at the end
 

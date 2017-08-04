@@ -3,7 +3,7 @@
 ### What you will get at the end
 
    * a docker container in which you can SSH in
-   * (optional) Vim: with YouCompleMe / Syntastic  and my vimrc (that you can easily replace by yours)
+   * (optional) neovim: with neomake , and rust language server
    * (optional) Zsh: with my zshrc (that you can replace by yours)
 
 ### Requirements

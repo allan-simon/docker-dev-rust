@@ -6,8 +6,8 @@ export WORDCHARS="*?_-[]~=/&;!#$%^(){}<>"
 
 
 export PATH=/usr/local/xsb/bin:/usr/local/flora2:/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/sbin:/bin:/usr/games:
-export VISUAL="vim"
-export EDITOR="vim"
+export VISUAL="nvim"
+export EDITOR="nvim"
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib:/usr/lib
 
 

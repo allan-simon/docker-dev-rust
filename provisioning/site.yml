@@ -20,14 +20,18 @@
        - vim
        - gcc
        - gdb
-       - cgdb
        - bash-completion # Not included in the docker image
        - make
        - tree
        - htop
        - man-db
+       - software-properties-common
+       - python-dev
+       - python-pip
+       - python3-dev
+       - python3-pip
 
   roles:
-    - js
+    - rust
     - zsh
-    - vim
+    - neovim

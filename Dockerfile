@@ -31,7 +31,7 @@ RUN \
     # Install python (otherwise ansible will not work) \
     # Install aptitude, since ansible needs it (only apt-get is installed) \
     apt-get -y update && \
-    apt-get -y install python python-dev python-pip aptitude && \
+    apt-get -y install sudo python python-dev python-pip aptitude && \
     # Enable password-less sudo for all user (including the 'vagrant' user) \
     chmod u+w ${SUDOFILE} && \
     echo '%sudo   ALL=(ALL:ALL) NOPASSWD: ALL' >> ${SUDOFILE} && \

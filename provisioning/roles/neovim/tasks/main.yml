@@ -41,3 +41,5 @@
 # install vim plugins
   - name: Install vim plugins 
     command: nvim '+silent!' '+PlugInstall!' '+qall!'
+    become: yes
+    become_user: vagrant

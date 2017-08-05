@@ -2,10 +2,6 @@
 # (which bug many students)
 stty stop undef
 
-
-
-
-
 #if available, use a better pager
 if command -v most &>/dev/null;then
     export PAGER=most
@@ -224,8 +220,10 @@ export HISTFILE SAVEHIST
 # from within the interactive shell
 sudo cat /etc/container_environment.sh | grep -v 'export _=' | source /dev/stdin
 
-export PATH=/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/sbin:/home/vagrant/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/
+export PATH=$PATH:/home/vagrant/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/:/home/vagrant/.cargo/bin
 export VISUAL="nvim"
 export EDITOR="nvim"
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib:/usr/lib
 export WORDCHARS="*?_-[]~=/&;!#$%^(){}<>"
+
+cd /vagrant

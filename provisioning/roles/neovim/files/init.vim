@@ -13,6 +13,8 @@ set autochdir
 
 set showcmd
 
+colorscheme torte
+
 "the status bar is always displayed
 set laststatus=2 
 if has("statusline")
@@ -62,7 +64,6 @@ nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 
 " Neomake configuration.
 augroup my_neomake_cmds
-    autocmd!
     " Have neomake run cargo when Rust files are saved.
-    autocmd BufWritePost *.rs Neomake! cargo
+    autocmd BufWritePost *.rs Neomake cargo
 augroup END

@@ -12,8 +12,8 @@
     become: yes
     become_user: vagrant
 
-  - name: Make "{{ neovim_config_dir }}/plugged" directory
-    file: path="{{ neovim_config_dir }}/plugged" state=directory
+  - name: Make "{{ neovim_data_dir }}/plugged" directory
+    file: path="{{ neovim_data_dir }}/plugged" state=directory
     become: yes
     become_user: vagrant
 
@@ -40,4 +40,4 @@
 
 # install vim plugins
   - name: Install vim plugins 
-    command: nvim "+silent! PlugInstall!" +qall!
+    command: nvim '+silent!' '+PlugInstall!' '+qall!'

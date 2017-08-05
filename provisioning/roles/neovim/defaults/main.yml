@@ -1,3 +1,4 @@
 ---
 # The base directory relative to which user specific configuration files should be stored
-neovim_config_dir: "/home/vagrant/.local/share/nvim"
+neovim_config_dir: "/home/vagrant/.config/nvim"
+neovim_data_dir: "/home/vagrant/.local/share/nvim"

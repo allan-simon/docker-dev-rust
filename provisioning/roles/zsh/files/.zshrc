@@ -225,5 +225,7 @@ export VISUAL="nvim"
 export EDITOR="nvim"
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib:/usr/lib
 export WORDCHARS="*?_-[]~=/&;!#$%^(){}<>"
+# for racer
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 
 cd /vagrant

@@ -62,8 +62,5 @@ nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 
-" Neomake configuration.
-augroup my_neomake_cmds
-    " Have neomake run cargo when Rust files are saved.
-    autocmd BufWritePost *.rs Neomake cargo
-augroup END
+" used by deoplete
+let g:deoplete#enable_at_startup = 1

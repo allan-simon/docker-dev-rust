@@ -17,3 +17,18 @@
     command: /home/vagrant/.cargo/bin/rustup component add rls
     become: yes
     become_user: vagrant
+
+  - name: install rust sources for racer
+    command: /home/vagrant/.cargo/bin/rustup component add rust-src
+    become: yes
+    become_user: vagrant
+
+  - name: install rust analysis
+    command: /home/vagrant/.cargo/bin/rustup component add rust-analysis
+    become: yes
+    become_user: vagrant
+
+  - name: install racer (take ~20 minutes)
+    command: /home/vagrant/.cargo/bin/cargo install racer
+    become: yes
+    become_user: vagrant

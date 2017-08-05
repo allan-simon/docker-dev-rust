@@ -2,13 +2,8 @@
 # (which bug many students)
 stty stop undef
 
-export WORDCHARS="*?_-[]~=/&;!#$%^(){}<>"
 
 
-export PATH=/usr/local/xsb/bin:/usr/local/flora2:/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/sbin:/bin:/usr/games:
-export VISUAL="nvim"
-export EDITOR="nvim"
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib:/usr/lib
 
 
 #if available, use a better pager
@@ -228,3 +223,9 @@ export HISTFILE SAVEHIST
 # so that we have access to the docker environments variable
 # from within the interactive shell
 sudo cat /etc/container_environment.sh | grep -v 'export _=' | source /dev/stdin
+
+export PATH=/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/sbin:/home/vagrant/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/
+export VISUAL="nvim"
+export EDITOR="nvim"
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib:/usr/lib
+export WORDCHARS="*?_-[]~=/&;!#$%^(){}<>"

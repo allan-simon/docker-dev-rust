@@ -1,3 +1,4 @@
+set mouse=a
 "
 set tabstop=4
 set softtabstop=4
@@ -64,3 +65,26 @@ nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 
 " used by deoplete
 let g:deoplete#enable_at_startup = 1
+
+
+" to easily switch from a split containing a terminal to an other split
+" see https://medium.com/@garoth/neovim-terminal-usecases-tricks-8961e5ac19b9
+func! s:mapMoveToWindowInDirection(direction)
+    func! s:maybeInsertMode(direction)
+        stopinsert
+        execute "wincmd" a:direction
+
+        if &buftype == 'terminal'
+            startinsert!
+        endif
+    endfunc
+
+    execute "tnoremap" "<silent>" "<C-" . a:direction . ">"
+                \ "<C-\\><C-n>"
+                \ ":call <SID>maybeInsertMode(\"" . a:direction . "\")<CR>"
+    execute "nnoremap" "<silent>" "<C-" . a:direction . ">"
+                \ ":call <SID>maybeInsertMode(\"" . a:direction . "\")<CR>"
+endfunc
+for dir in ["h", "j", "l", "k"]
+    call s:mapMoveToWindowInDirection(dir)
+endfor

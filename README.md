@@ -5,7 +5,7 @@
 
 ### What you will get at the end
 
-   * a docker container in which you can SSH in
+   * a docker container exposing a ssh server on port 22
    * (optional) neovim: with deoplete , and rust language server
    * (optional) Zsh: with my zshrc (that you can replace by yours)
 

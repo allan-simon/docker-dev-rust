@@ -12,10 +12,10 @@ fi
 
 docker build \
     --rm \
-    --tag=rust_vim_docker \
+    --tag=rust_nvim_docker \
     .
 
 echo -e "\n\n\n\n\n"
-echo "container rust_vim_docker created, you can do :"
-echo " * docker run -d -e HOST_USER_UID=\$(id -u)  --name YOUR_PROJECT -p YOUR_LOCAL_PORT:22 rust_vim_docker => if you need one env by project"
+echo "container rust_nvim_docker created, you can do :"
+echo " * docker run -d -e HOST_USER_UID=\$(id -u)  --name YOUR_PROJECT -p YOUR_LOCAL_PORT:22 rust_nvim_docker => if you need one env by project"
 echo -e "\n\n\n\n\n"

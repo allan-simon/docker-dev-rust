@@ -14,7 +14,7 @@
     become_user: vagrant
 
   - name: install rust language server (rls)
-    command: /home/vagrant/.cargo/bin/rustup component add rls-preview
+    command: /home/vagrant/.cargo/bin/rustup component add rls
     become: yes
     become_user: vagrant
 

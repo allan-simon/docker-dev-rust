@@ -16,6 +16,12 @@
         update_cache: yes
         cache_valid_time: 14400 # 4 hours
 
+    - name: GIT | Configure git system
+      git_config: name={{ item.cfg  }} value={{ item.set  }} scope=system
+      with_items:
+        - { cfg: "user.email", set: "EMAIL@ADDRESS.com"  }
+        - { cfg: "user.name", set: "USER_NAME"  }
+
   roles:
     - rust
     - zsh

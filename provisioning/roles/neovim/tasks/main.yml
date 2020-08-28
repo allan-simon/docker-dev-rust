@@ -1,45 +1,41 @@
 ---
-  - name: Add neovim ppa 
-    apt_repository: repo="ppa:neovim-ppa/stable" state=present
+- name: Add neovim ppa
+  apt_repository: repo="ppa:neovim-ppa/stable" state=present
  
-  - name: Install neovim from ppa
-    apt: name="neovim" state="present"
+- name: Install neovim from ppa
+  apt: name="neovim" state="present"
 
-# install vim-plug
+- name: Install vim-plug
+  block:
+    - name: Make "{{ neovim_config_dir }}/autoload" directory
+      file: path="{{ neovim_config_dir }}/autoload" state=directory
 
-  - name: Make "{{ neovim_config_dir }}/autoload" directory
-    file: path="{{ neovim_config_dir }}/autoload" state=directory
-    become: yes
-    become_user: vagrant
+    - name: Make "{{ neovim_data_dir }}/plugged" directory
+      file: path="{{ neovim_data_dir }}/plugged" state=directory
 
-  - name: Make "{{ neovim_data_dir }}/plugged" directory
-    file: path="{{ neovim_data_dir }}/plugged" state=directory
-    become: yes
-    become_user: vagrant
+    - name: Install vim-plug
+      get_url:
+        url: " https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+        dest: "{{ neovim_config_dir }}/autoload/plug.vim"
+        mode: 0700
 
-  - name: Install vim-plug
-    get_url:
-      url: " https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-      dest: "{{ neovim_config_dir }}/autoload/plug.vim"
-    become: yes
-    become_user: vagrant
+  become: yes
+  become_user: vagrant
 
 # install deoplete
-
-  - name: Installing neovim pip3 package
-    command: pip3 install neovim
+- name: Installing neovim pip3 package
+  command: pip3 install neovim
 
 # Copy the init file
-  - name: copy init files in rc folder
-    copy:
-      src="init.vim"
-      dest="{{ neovim_config_dir }}/init.vim"
-      owner="{{ username }}"
-      group="{{ username }}"
-      mode=0640
+- name: copy init files in rc folder
+  copy:
+    src="init.vim"
+    dest="{{ neovim_config_dir }}/init.vim"
+    owner="{{ username }}"
+    group="{{ username }}"
+    mode=0640
 
-# install vim plugins
-  - name: Install vim plugins 
-    command: nvim '+silent!' '+PlugInstall!' '+qall!'
-    become: yes
-    become_user: vagrant
+- name: Install vim plugins
+  command: nvim '+silent!' '+PlugInstall!' '+qall!'
+  become: yes
+  become_user: vagrant

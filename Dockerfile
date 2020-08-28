@@ -1,5 +1,5 @@
 # Re-use the phusion baseimage which runs an SSH server etc
-FROM phusion/baseimage
+FROM phusion/baseimage:master-amd64
 
 # Some definitions
 ENV SUDOFILE /etc/sudoers
@@ -29,16 +29,15 @@ RUN \
     chown -R vagrant:vagrant /home/vagrant/.ssh && \
     # Update apt-cache, so that stuff can be installed \
     # Install python (otherwise ansible will not work) \
-    # Install aptitude, since ansible needs it (only apt-get is installed) \
     apt-get -y update && \
-    apt-get -y install sudo python python-dev python-pip aptitude && \
+    apt-get -y install sudo python3 python3-dev python3-pip && \
     # Enable password-less sudo for all user (including the 'vagrant' user) \
     chmod u+w ${SUDOFILE} && \
     echo '%sudo   ALL=(ALL:ALL) NOPASSWD: ALL' >> ${SUDOFILE} && \
     chmod u-w ${SUDOFILE} && \
     apt-get clean && \
     # install ansible
-    pip install ansible && \
+    pip3 install ansible && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     # we put the 'last time apt-get update was run' file far in the past \
     # so that ansible can then re-run apt-get update \

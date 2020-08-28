@@ -1,34 +1,26 @@
 ---
-
+- block:
   - name: download rustup
     get_url:
       url: "https://sh.rustup.rs"
       dest: "/tmp/rustup.sh"
       validate_certs: False
-    become: yes
-    become_user: vagrant
+      mode: 0700
 
   - name: install rustup and rust nightly
     command: "sh /tmp/rustup.sh --default-toolchain nightly -y"
-    become: yes
-    become_user: vagrant
 
   - name: install rust language server (rls)
     command: /home/vagrant/.cargo/bin/rustup component add rls-preview
-    become: yes
-    become_user: vagrant
 
   - name: install rust sources for racer
     command: /home/vagrant/.cargo/bin/rustup component add rust-src
-    become: yes
-    become_user: vagrant
 
   - name: install rust analysis
     command: /home/vagrant/.cargo/bin/rustup component add rust-analysis
-    become: yes
-    become_user: vagrant
 
   - name: install racer (take ~20 minutes)
     command: /home/vagrant/.cargo/bin/cargo install racer
-    become: yes
-    become_user: vagrant
+
+  become: yes
+  become_user: vagrant

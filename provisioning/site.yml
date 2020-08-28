@@ -8,29 +8,19 @@
     document_root: "/{{ username }}"
 
   pre_tasks:
-    - name: Install stuff from Aptitude
-      apt: 
-        name="{{ item }}"
-        state=present
-        update_cache=yes 
-        cache_valid_time=86400
+    - name: Install from Apt
+      apt:
+        # bash-completion is not in phusion
+        name: ['sudo', 'git', 'tig', 'vim', 'gcc', 'gdb', 'bash-completion', 'make', 'tree', 'htop', 'man-db', 'software-properties-common', 'python3-dev', 'python3-pip']
+        state: present
+        update_cache: yes
+        cache_valid_time: 14400 # 4 hours
+
+    - name: GIT | Configure git system
+      git_config: name={{ item.cfg  }} value={{ item.set  }} scope=system
       with_items:
-       - sudo
-       - git
-       - tig
-       - vim
-       - gcc
-       - gdb
-       - bash-completion # Not included in the docker image
-       - make
-       - tree
-       - htop
-       - man-db
-       - software-properties-common
-       - python-dev
-       - python-pip
-       - python3-dev
-       - python3-pip
+        - { cfg: "user.email", set: "EMAIL@ADDRESS.com"  }
+        - { cfg: "user.name", set: "USER_NAME"  }
 
   roles:
     - rust
